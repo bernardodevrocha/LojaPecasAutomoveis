@@ -24,7 +24,6 @@ db.sequelize
   });
 
 app.use("/api/product", productRoutes);
-
 app.use("/api/users", userRoutes);
 
 app.use((req, res) => {

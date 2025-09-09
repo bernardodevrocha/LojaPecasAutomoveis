@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     password_hash: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false
     },
     role:{
@@ -26,14 +26,6 @@ module.exports = (sequelize) => {
       defaultValue: "usuario",
       allowNull: false
     },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    updatedAt:{
-      type: DataTypes.DATE,
-      allowNull: false
-    }
   }, {
     tableName: "Users",
     timestamps: true
