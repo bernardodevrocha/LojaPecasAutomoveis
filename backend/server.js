@@ -12,6 +12,7 @@ const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 db.sequelize
   .sync({ alter: true })
@@ -23,8 +24,8 @@ db.sequelize
     process.exit(1);
   });
 
-app.use("/api/product", productRoutes);
-app.use("/api/users", userRoutes);
+app.use("/product", productRoutes);
+app.use("/users", userRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ error: "Rota não encontrada." });
