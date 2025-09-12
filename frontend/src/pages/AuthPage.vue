@@ -107,6 +107,7 @@ http.interceptors.response.use(
       (status === 401 && 'Credenciais inválidas.') ||
       (status === 409 && 'Conflito: e-mail já cadastrado.') ||
       (status === 500 && 'Erro interno no servidor.') ||
+      (status === 200 && 'Deu certo logar.') ||
       'Não foi possível completar a ação.'
     return Promise.reject(new Error(msg))
   }
@@ -177,7 +178,7 @@ async function handleLogin() {
     })
     successMsg.value = data?.message || 'Login realizado com sucesso!'
     if (data?.user) localStorage.setItem('user', JSON.stringify(data.user))
-    try { router.push('/home') } catch (err) { console.log(err) }
+    await router.replace("/home")
   } catch (e) {
     errorMsg.value = e.message || 'Falha ao entrar.'
   } finally {
@@ -316,4 +317,13 @@ async function handleLogin() {
 
 /* fonte base */
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; }
+</style>
+
+<style>
+:root{
+  --bg:#f3f4f6; --card-bg:#fff; --border:#e5e7eb; --text:#111827; --muted:#6b7280;
+  --blue:#2563eb; --blue-hover:#1d4ed8;
+  --red-50:#fef2f2; --red-200:#fecaca; --red-800:#991b1b;
+  --green-50:#ecfdf5; --green-200:#a7f3d0; --green-800:#065f46;
+}
 </style>

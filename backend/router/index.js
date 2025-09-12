@@ -1,15 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LoginPage from '@/pages/LoginPage.vue'
-
-const HomePage = { template: '<div class="p-6">Home</div>' }
+import LoginPage from '@/pages/LoginPage.vue'      // use caminhos relativos se não tiver alias "@"
+import ProductPage from '@/pages/ProductPage.vue'
 
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', component: LoginPage },
-  { path: '/home', component: HomePage },
+  { path: '/home', component: ProductPage },
 ]
 
-export const router = createRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes,
 })
+
+export default router

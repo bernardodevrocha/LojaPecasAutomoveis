@@ -7,6 +7,7 @@
       <Categories /> 
     </main>
     <Footer />
+    <h1>Olá mundo!</h1>
   </div>
 </template>
 
