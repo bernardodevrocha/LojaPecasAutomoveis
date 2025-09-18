@@ -1,4 +1,3 @@
-// server.js
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -6,6 +5,8 @@ const path = require("path");
 const db = require("./Models");
 const productRoutes = require("./router/productRoutes");
 const userRoutes = require("./router/userRoutes");
+const vendasRoutes = require("./router/vendasRoutes")
+const salesRoutes = require("./router/salesRoutes")
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -21,16 +22,10 @@ db.sequelize.sync({ alter: true }).then(() => {
   process.exit(1);
 });
 
-// ✅ API somente em /api/*
+app.use("/api/vendas", vendasRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/users", userRoutes);
-
-// (opcional – servir build do Vue em produção)
-// const dist = path.join(__dirname, "../frontend/dist");
-// app.use(express.static(dist));
-// app.get("*", (_req, res) => res.sendFile(path.join(dist, "index.html")));
-
-// 404 só para caminhos de API desconhecidos
 app.use("/api", (_req, res) => res.status(404).json({ error: "Rota não encontrada." }));
+app.use("/api/sales", salesRoutes)
 
 app.listen(port, () => console.log(`🚀 Servidor rodando na porta ${port}`));
